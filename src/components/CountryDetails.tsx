@@ -25,6 +25,10 @@ export const CountryDetails = ({code}: CountryDetails) => {
         country({variables: {code}})
     }, [code])
 
+    if (loading || error) {
+        return <p>{error ? error.message : 'Loading...'}</p>;
+    }
+
     return data && (
         <>
             <p>{data.country.capital}</p>
