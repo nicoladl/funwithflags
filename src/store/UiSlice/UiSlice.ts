@@ -4,14 +4,17 @@ export const UiSlice = createSlice({
     name: 'ui',
     initialState: {
         guessedCountryCode: '',
-        randomCountryCode: ''
+        randomCountry: {
+            code: '',
+            name: '',
+        },
     },
     reducers: {
         guessedCountry: (state, action) => {
             state.guessedCountryCode = action.payload
         },
         randomCountryCode: (state, action) => {
-            state.randomCountryCode = action.payload
+            state.randomCountry = action.payload
         }
     }
 })

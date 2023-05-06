@@ -10,6 +10,7 @@ const LIST_COUNTRIES = gql`
     {
         countries {
             code
+            name
             emoji
         }
     }
@@ -18,6 +19,7 @@ const LIST_COUNTRIES = gql`
 export const RandomCountry = () => {
     const [randomCountry, setRandomCountry] = useState({
         code: '',
+        name: '',
         emoji: null,
     })
     const dispatch = useDispatch()
@@ -37,10 +39,8 @@ export const RandomCountry = () => {
 
     // if random country dispatch
     useEffect(() => {
-        dispatch(randomCountryCode(randomCountry.code))
+        dispatch(randomCountryCode({code: randomCountry.code, name: randomCountry.name}))
     }, [randomCountry])
-
-    // const {data, loading, error} = useQuery(LIST_COUNTRIES);
 
     if (loading || error) {
         return <p>{error ? error.message : 'Loading...'}</p>;
