@@ -1,28 +1,29 @@
 import {CountrySelect} from "@/components/CountrySelect";
 import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {MapContainer} from "@/components/MapContainer";
+import {GuessCountryCode} from "@/components/GuessCountryCode";
 
 export const GameContainer = () => {
-    const [winning, setWinning] = useState(false);
+    const [countryGuessed, setCountryGuessed] = useState(false);
     const randomCountryCode = useSelector(state => state.ui.randomCountry.code)
     const guessedCountryCode = useSelector(state => state.ui.guessedCountryCode)
 
     useEffect(() => {
         if (randomCountryCode && guessedCountryCode) {
-            setWinning(randomCountryCode === guessedCountryCode)
+            setCountryGuessed(randomCountryCode === guessedCountryCode)
         }
     }, [guessedCountryCode, randomCountryCode])
 
     return (
         <>
             <CountrySelect/>
-            {winning && (
+            {countryGuessed && (
                 <>
-                    <h2>BAZINGA</h2>
+                    <h2>CONGRATULATIONS</h2>
+                    <p>Now guess the country code</p>
+                    <GuessCountryCode/>
                 </>
             )}
-            <MapContainer/>
         </>
     )
 }

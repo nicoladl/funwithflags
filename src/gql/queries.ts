@@ -29,3 +29,12 @@ export const COUNTRY = gql`
         }
     }
 `;
+
+export const COUNTRIES_CONTAIN = gql`
+    query countries ($code: String) {
+        countries(filter: { code: { regex: $code } }) {
+            code
+            name
+        }
+    }
+`;

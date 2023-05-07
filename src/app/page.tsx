@@ -8,11 +8,14 @@ import {GameContainer} from "@/components/GameContainer";
 import {RandomCountry} from "@/components/RandomCountry";
 import {Tile} from "@/components/Tile";
 import {AlignCenter} from "@/components/AlignCenter";
+import {MapContainer} from "@/components/MapContainer";
 
 export default function Home() {
     return (
         <ApolloProvider client={client}>
             <Provider store={store}>
+                <MapContainer/>
+
                 <AlignCenter>
                     <Tile>
                         <h1>FUN WITH FLAGS</h1>
@@ -20,7 +23,11 @@ export default function Home() {
                         <RandomCountry/>
                     </Tile>
                 </AlignCenter>
-                <GameContainer/>
+                <AlignCenter>
+                    <Tile>
+                        <GameContainer/>
+                    </Tile>
+                </AlignCenter>
             </Provider>
         </ApolloProvider>
     )
