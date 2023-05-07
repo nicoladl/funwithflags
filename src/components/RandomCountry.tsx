@@ -1,20 +1,11 @@
 'use client';
 
 import React, {useEffect, useState} from 'react';
-import {gql, useLazyQuery, useQuery} from '@apollo/client';
+import {useLazyQuery} from '@apollo/client';
 import {CountryDetails} from "@/components/CountryDetails";
 import {randomCountryCode} from "@/store/UiSlice/UiSlice";
 import {useDispatch} from "react-redux";
-
-const LIST_COUNTRIES = gql`
-    {
-        countries {
-            code
-            name
-            emoji
-        }
-    }
-`;
+import {COUNTRIES} from "@/gql/queries";
 
 export const RandomCountry = () => {
     const [randomCountry, setRandomCountry] = useState({
@@ -23,7 +14,11 @@ export const RandomCountry = () => {
         emoji: null,
     })
     const dispatch = useDispatch()
-    const [loadCountries, {called, loading, error, data}] = useLazyQuery(LIST_COUNTRIES);
+    const [loadCountries, {called, loading, error, data}] = useLazyQuery(COUNTRIES);
+
+    const onRefreshRandomCountry = () => {
+        loadCountries()
+    }
 
     // fetch the countries
     useEffect(() => {
@@ -49,8 +44,9 @@ export const RandomCountry = () => {
     return data && (
         <>
             <p style={{ fontSize: '10em' }}>{randomCountry.emoji}</p>
+            <p>Hints:</p>
             <CountryDetails code={randomCountry.code}/>
-            <button onClick={() => loadCountries()}>refresh</button>
+            <button onClick={onRefreshRandomCountry}>new random flag</button>
         </>
     );
 }

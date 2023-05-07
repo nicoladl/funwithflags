@@ -1,18 +1,8 @@
 'use client';
 
 import React, {useEffect} from 'react';
-import {gql, useLazyQuery} from '@apollo/client';
-
-const COUNTRY = gql`
-    query country ($code: ID!) {
-        country (code: $code) {
-            capital
-            continent {
-                name
-            }
-        }
-    }
-`;
+import {useLazyQuery} from '@apollo/client';
+import {COUNTRY} from "@/gql/queries";
 
 type CountryDetails = {
     code: string;
@@ -31,8 +21,8 @@ export const CountryDetails = ({code}: CountryDetails) => {
 
     return data && (
         <>
-            <p>{data.country.capital}</p>
-            <p>{data.country.continent.name}</p>
+            <p>Capital: {data.country.capital}</p>
+            <p>Continent: {data.country.continent.name}</p>
         </>
     );
 }

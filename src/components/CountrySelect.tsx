@@ -1,24 +1,16 @@
 'use client';
 
 import React, {useState} from 'react';
-import {gql, useQuery} from '@apollo/client';
+import {useQuery} from '@apollo/client';
 import {Country} from "@/gql/graphql";
 import {useDispatch} from "react-redux";
 import {guessedCountry} from "@/store/UiSlice/UiSlice";
-
-const LIST_COUNTRIES = gql`
-  {
-    countries {
-      name
-      code
-    }
-  }
-`;
+import {COUNTRIES_SELECT_OPTIONS} from "@/gql/queries";
 
 export const CountrySelect = () => {
     const dispatch = useDispatch()
     const [country, setCountry] = useState('');
-    const {data, loading, error} = useQuery(LIST_COUNTRIES);
+    const {data, loading, error} = useQuery(COUNTRIES_SELECT_OPTIONS);
 
     if (loading || error) {
         return <p>{error ? error.message : 'Loading...'}</p>;

@@ -1,41 +1,46 @@
-import {GoogleMap, LoadScript} from '@react-google-maps/api';
-import Geocode from "react-geocode";
+import {GoogleMap, useJsApiLoader} from '@react-google-maps/api';
 import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-
-const containerStyle = {
-    width: '400px',
-    height: '400px'
-};
-
+import {mapContainerStyle, mapOptions} from "@/mapConfig";
 export const MapContainer = () => {
     const guessedCountryName = useSelector(state => state.ui.randomCountry.name)
+    const [isMapReady, seIsMapReady] = useState(false)
     const [center, setCenter] = useState({
         lat: 0,
         lng: 0
     })
-    Geocode.setApiKey('AIzaSyAidISZEQMTxM_LKtwUoT1w0IDewL6k_Tg');
+
+    const {isLoaded, loadError} = useJsApiLoader({
+        googleMapsApiKey: 'AIzaSyAidISZEQMTxM_LKtwUoT1w0IDewL6k_Tg',
+        language: 'en'
+    })
 
     useEffect(() => {
-        // Get latitude & longitude from address.
-        Geocode.fromAddress(guessedCountryName).then(response => {
-                const {lat, lng} = response.results[0].geometry.location;
-                setCenter({lat, lng})
-        }, error => console.error(error));
+        if (isLoaded) {
+            const geocoder = new window.google.maps.Geocoder();
+            geocoder.geocode({address: guessedCountryName}, (results, status) => {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    const lat = results ? results[0].geometry.location.lat() : 0;
+                    const lng = results ? results[0].geometry.location.lng() : 0;
+                    setCenter({lat, lng})
+                }
+            })
+        }
     }, [guessedCountryName])
 
-    return (
-        <LoadScript
-            googleMapsApiKey='AIzaSyAidISZEQMTxM_LKtwUoT1w0IDewL6k_Tg'
-        >
-            <GoogleMap
-                mapContainerStyle={containerStyle}
-                center={center}
-                zoom={7}
-            >
-                { /* Child components, such as markers, info windows, etc. */}
-                <></>
-            </GoogleMap>
-        </LoadScript>
-    )
+    useEffect(() => {
+        if (isLoaded) {
+            seIsMapReady(true)
+        }
+    }, [center])
+
+    if (loadError) {
+        return <div>Map cannot be loaded right now, sorry.</div>
+    }
+
+    return isMapReady ? <GoogleMap
+        mapContainerStyle={mapContainerStyle}
+        center={center}
+        options={mapOptions}
+    /> : <p>loading...</p>
 }
