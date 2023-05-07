@@ -3,19 +3,19 @@
 import React, {useEffect, useState} from 'react';
 import {useLazyQuery} from '@apollo/client';
 import {useDispatch} from "react-redux";
-import {guessedCountry} from "@/store/UiSlice/UiSlice";
+import {inputCountryCode} from "@/store/UiSlice/UiSlice";
 import {COUNTRIES_CONTAIN} from "@/gql/queries";
 
 export const GuessCountryCode = () => {
     const dispatch = useDispatch()
-    const [charOne, setCharOne] = useState(null);
-    const [charTwo, setCharTwo] = useState(null);
+    const [charOne, setCharOne] = useState('');
+    const [charTwo, setCharTwo] = useState('');
     const [loadCountries, {called, loading, error, data}] = useLazyQuery(COUNTRIES_CONTAIN);
 
     useEffect(() => {
-        console.log(`${charOne}${charTwo}`)
         if (`${charOne}${charTwo}`.length === 2) {
             loadCountries({ variables: { code: `${charOne}${charTwo}` } })
+            dispatch(inputCountryCode(`${charOne}${charTwo}`))
         }
     }, [charOne, charTwo])
 
