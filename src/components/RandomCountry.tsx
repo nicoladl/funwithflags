@@ -6,6 +6,7 @@ import {CountryDetails} from "@/components/CountryDetails";
 import {randomCountryCode} from "@/store/UiSlice/UiSlice";
 import {useDispatch} from "react-redux";
 import {COUNTRIES} from "@/gql/queries";
+import styles from './RandomCountry.module.scss'
 
 export const RandomCountry = () => {
     const [randomCountry, setRandomCountry] = useState({
@@ -44,9 +45,9 @@ export const RandomCountry = () => {
     return data && (
         <>
             <p style={{ fontSize: '10em' }}>{randomCountry.emoji}</p>
-            <p>Hints:</p>
+            <p><strong>Hints</strong></p>
             <CountryDetails code={randomCountry.code}/>
-            <button onClick={onRefreshRandomCountry}>new random flag</button>
+            <button className={styles.button} onClick={onRefreshRandomCountry}>new random flag</button>
         </>
     );
 }

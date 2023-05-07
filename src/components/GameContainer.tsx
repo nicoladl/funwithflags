@@ -26,11 +26,11 @@ export const GameContainer = () => {
             {countryGuessed && (
                 <>
                     <h2>CONGRATULATIONS</h2>
-                    <h1>🎉🎉🎉</h1>
+                    <h3>🎉🎉🎉</h3>
                     <p>Now guess the country code</p>
                     <GuessCountryCode/>
                     {countryCodeGuessed && (
-                        <p>BRAVO</p>
+                        <h3>🎉🎉🎉</h3>
                     )}
                 </>
             )}

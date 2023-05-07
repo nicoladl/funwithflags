@@ -9,25 +9,28 @@ import {RandomCountry} from "@/components/RandomCountry";
 import {Tile} from "@/components/Tile";
 import {AlignCenter} from "@/components/AlignCenter";
 import {MapContainer} from "@/components/MapContainer";
+import RootLayout from "@/app/layout";
 
 export default function Home() {
     return (
         <ApolloProvider client={client}>
             <Provider store={store}>
-                <MapContainer/>
+                <RootLayout>
+                    <MapContainer/>
 
-                <AlignCenter>
-                    <Tile>
-                        <h1>FUN WITH FLAGS</h1>
-                        <p>guess the country</p>
-                        <RandomCountry/>
-                    </Tile>
-                </AlignCenter>
-                <AlignCenter>
-                    <Tile>
-                        <GameContainer/>
-                    </Tile>
-                </AlignCenter>
+                    <AlignCenter>
+                        <Tile>
+                            <h1>FUN WITH FLAGS</h1>
+                            <p>Guess the country</p>
+                            <RandomCountry/>
+                        </Tile>
+                    </AlignCenter>
+                    <AlignCenter>
+                        <Tile>
+                            <GameContainer/>
+                        </Tile>
+                    </AlignCenter>
+                </RootLayout>
             </Provider>
         </ApolloProvider>
     )
