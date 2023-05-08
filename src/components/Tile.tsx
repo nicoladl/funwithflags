@@ -1,6 +1,10 @@
 import styles from './Tile.module.scss'
 
-export const Tile = ({ children }) => {
+type Tile = {
+    children: JSX.Element,
+};
+
+export const Tile = ({ children }: Tile) => {
     return (
         <div className={styles.tile}>{children}</div>
     )

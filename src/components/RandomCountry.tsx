@@ -2,10 +2,10 @@
 
 import React, {useEffect, useState} from 'react';
 import {useLazyQuery} from '@apollo/client';
-import {CountryDetails} from "@/components/CountryDetails";
-import {randomCountryCode} from "@/store/UiSlice/UiSlice";
 import {useDispatch} from "react-redux";
 import {COUNTRIES} from "@/gql/queries";
+import {randomCountryCode} from "@/store/UiSlice/UiSlice";
+import {CountryDetails} from "@/components/CountryDetails";
 import styles from './RandomCountry.module.scss'
 
 export const RandomCountry = () => {
