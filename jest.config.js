@@ -9,5 +9,21 @@ module.exports = {
     '\\.(scss|less)$': '<rootDir>/styleMock.js',
     '^@/(.*)$': '<rootDir>/src/$1',
   },
-  testEnvironment: 'jsdom'
+  testEnvironment: 'jsdom',
+  coverageDirectory: './coverage',
+  coverageReporters: [
+    'html',
+    'text',
+    'lcov',
+    'json',
+    'text-summary',
+  ],
+  coverageThreshold: {
+    global: {
+      statements: 40,
+      branches: 40,
+      functions: 40,
+      lines: 40,
+    },
+  },
 };

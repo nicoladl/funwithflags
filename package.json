@@ -9,7 +9,7 @@
     "lint": "next lint",
     "codegen": "graphql-codegen --config codegen.ts",
     "test": "jest",
-    "jestClearCache": "npx jest --clearCache"
+    "coverage": "jest --coverage --verbose"
   },
   "dependencies": {
     "@apollo/client": "^3.7.14",
