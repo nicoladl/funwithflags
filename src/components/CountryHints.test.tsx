@@ -30,7 +30,8 @@ const mocksError = [
             variables: { code: 'IT' }
         },
         error: {
-            message: new Error("An error occurred")
+            name: 'Error name mock',
+            message: 'An error occurred'
         }
     }
 ];
@@ -72,7 +73,7 @@ describe('CountryHits', () => {
             </MockedProvider>
         );
 
-        expect(await screen.findByText("Error: An error occurred")).toBeInTheDocument();
+        expect(await screen.findByText("An error occurred")).toBeInTheDocument();
     });
 
     it("should render Italy", async () => {
