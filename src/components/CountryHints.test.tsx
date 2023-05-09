@@ -1,7 +1,7 @@
 import React from "react";
 import {render, screen} from "@testing-library/react";
 import {MockedProvider} from "@apollo/client/testing";
-import {CountryDetails} from "./CountryDetails";
+import {CountryHints} from "./CountryHints";
 import {COUNTRY} from "@/gql/queries";
 
 const mocksLoading = [
@@ -54,11 +54,11 @@ const mocks = [
     }
 ];
 
-describe('CountryDetails', () => {
+describe('CountryHits', () => {
     it("should render the loading state", async () => {
         const { container } = render(
             <MockedProvider mocks={mocksLoading} addTypename={false}>
-                <CountryDetails code={'IT'}/>
+                <CountryHints code={'IT'}/>
             </MockedProvider>
         );
 
@@ -68,7 +68,7 @@ describe('CountryDetails', () => {
     it("should render the error message", async () => {
         render(
             <MockedProvider mocks={mocksError} addTypename={false}>
-                <CountryDetails code={'IT'}/>
+                <CountryHints code={'IT'}/>
             </MockedProvider>
         );
 
@@ -78,7 +78,7 @@ describe('CountryDetails', () => {
     it("should render Italy", async () => {
         render(
             <MockedProvider mocks={mocks} addTypename={false}>
-                <CountryDetails code={'IT'}/>
+                <CountryHints code={'IT'}/>
             </MockedProvider>
         );
 

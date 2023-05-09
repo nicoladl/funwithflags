@@ -2,11 +2,12 @@
 
 import React, {useEffect, useState} from 'react';
 import {useLazyQuery} from '@apollo/client';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {COUNTRIES} from "@/gql/queries";
-import {randomCountryCode} from "@/store/UiSlice/UiSlice";
-import {CountryDetails} from "@/components/CountryDetails";
+import {CountryHints} from "@/components/CountryHints";
+import {getRandomCountryCode} from "@/utils";
 import styles from './RandomCountry.module.scss'
+import {randomCountryCode} from "@/store/UiSlice/UiSlice";
 
 export const RandomCountry = () => {
     const [randomCountry, setRandomCountry] = useState({
@@ -15,25 +16,24 @@ export const RandomCountry = () => {
         emoji: null,
     })
     const dispatch = useDispatch()
-    const [loadCountries, {called, loading, error, data}] = useLazyQuery(COUNTRIES);
+    const [loadCountries, {loading, error, data}] = useLazyQuery(COUNTRIES);
 
     const onRefreshRandomCountry = () => {
         loadCountries()
     }
 
-    // fetch the countries
+    // todo: fix double call
     useEffect(() => {
         loadCountries()
     }, [])
 
-    // if data get a random country
     useEffect(() => {
         if (data) {
-            setRandomCountry(data.countries[Math.floor(Math.random() * data.countries.length)])
+            console.log(getRandomCountryCode(data.countries))
+            setRandomCountry(getRandomCountryCode(data.countries))
         }
     }, [data])
 
-    // if random country dispatch
     useEffect(() => {
         dispatch(randomCountryCode({code: randomCountry.code, name: randomCountry.name}))
     }, [randomCountry])
@@ -42,11 +42,15 @@ export const RandomCountry = () => {
         return <p>{error ? error.message : 'Loading...'}</p>;
     }
 
-    return data && (
+    return (
         <>
-            <p style={{ fontSize: '10em' }}>{randomCountry.emoji}</p>
-            <p><strong>Hints</strong></p>
-            <CountryDetails code={randomCountry.code}/>
+            {data && (
+                <>
+                    <p style={{ fontSize: '10em' }}>{randomCountry.emoji}</p>
+                    <p><strong>Hints</strong></p>
+                    <CountryHints code={randomCountry.code}/>
+                </>
+            )}
             <button className={styles.button} onClick={onRefreshRandomCountry}>new random flag</button>
         </>
     );

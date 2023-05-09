@@ -20,9 +20,11 @@ export default function Home() {
 
                     <AlignCenter>
                         <Tile>
-                            <h1>FUN WITH FLAGS</h1>
-                            <p>Guess the country</p>
-                            <RandomCountry/>
+                            <>
+                                <h1>FUN WITH FLAGS</h1>
+                                <p>Guess the country</p>
+                                <RandomCountry/>
+                            </>
                         </Tile>
                     </AlignCenter>
                     <AlignCenter>

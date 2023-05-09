@@ -4,11 +4,11 @@ import React, {useEffect} from 'react';
 import {useLazyQuery} from '@apollo/client';
 import {COUNTRY} from "@/gql/queries";
 
-type CountryDetails = {
+type CountryHits = {
     code: string;
 };
 
-export const CountryDetails = ({code}: CountryDetails) => {
+export const CountryHints = ({code}: CountryHits) => {
     const [country, {loading, error, data}] = useLazyQuery(COUNTRY);
 
     useEffect(() => {

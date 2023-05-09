@@ -2,6 +2,8 @@ import {CountrySelect} from "@/components/CountrySelect";
 import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {GuessCountryCode} from "@/components/GuessCountryCode";
+import {Congrats} from "@/components/Congrats";
+import {Tile} from "@/components/Tile";
 
 export const GameContainer = () => {
     const [countryGuessed, setCountryGuessed] = useState(false);
@@ -17,7 +19,9 @@ export const GameContainer = () => {
     }, [guessedCountryCode, randomCountryCode])
 
     useEffect(() => {
-        setCountryCodeGuessed(randomCountryCode === inputCountryCode)
+        if (inputCountryCode.length >= 2) {
+            setCountryCodeGuessed(randomCountryCode === inputCountryCode)
+        }
     }, [inputCountryCode])
 
     return (
@@ -25,13 +29,22 @@ export const GameContainer = () => {
             <CountrySelect/>
             {countryGuessed && (
                 <>
-                    <h2>CONGRATULATIONS</h2>
-                    <h3>🎉🎉🎉</h3>
-                    <p>Now guess the country code</p>
-                    <GuessCountryCode/>
-                    {countryCodeGuessed && (
-                        <h3>🎉🎉🎉</h3>
-                    )}
+                    <Tile>
+                        <Congrats/>
+                    </Tile>
+                    <Tile>
+                        <>
+                            <p>Now guess the country code</p>
+                            <GuessCountryCode/>
+                            {countryCodeGuessed && (
+                                <>
+                                    <Tile>
+                                        <Congrats/>
+                                    </Tile>
+                                </>
+                            )}
+                        </>
+                    </Tile>
                 </>
             )}
         </>
