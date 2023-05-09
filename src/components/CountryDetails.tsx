@@ -41,7 +41,6 @@ export const CountryDetails = () => {
                         <p>Currency: {country.currency}</p>
                         <p>Native: {country.native}</p>
                         <p>Phone: {country.phone}</p>
-                        <p>States: {country.currency}</p>
                         {!!country.languages.length &&
                             <p>Languages: {country.languages.map((language: string, index: number) =>
                                 <span>{language.name}{index < country.languages.length - 1 ? ', ' : ''}</span>)}</p>}
