@@ -10,12 +10,12 @@ import styles from './RandomCountry.module.scss'
 import {randomCountryCode} from "@/store/UiSlice/UiSlice";
 
 export const RandomCountry = () => {
+    const dispatch = useDispatch()
     const [randomCountry, setRandomCountry] = useState({
         code: '',
         name: '',
         emoji: null,
     })
-    const dispatch = useDispatch()
     const [loadCountries, {loading, error, data}] = useLazyQuery(COUNTRIES);
 
     const onRefreshRandomCountry = () => {
@@ -29,7 +29,6 @@ export const RandomCountry = () => {
 
     useEffect(() => {
         if (data) {
-            console.log(getRandomCountryCode(data.countries))
             setRandomCountry(getRandomCountryCode(data.countries))
         }
     }, [data])

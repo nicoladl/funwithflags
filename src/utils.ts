@@ -1,4 +1,4 @@
-type Country = {
+export type Country = {
     code: string;
     name: string;
     emoji: null;

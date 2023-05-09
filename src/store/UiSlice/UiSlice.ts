@@ -9,6 +9,7 @@ export const UiSlice = createSlice({
             code: '',
             name: '',
         },
+        winning: false,
     },
     reducers: {
         guessedCountry: (state, action) => {
@@ -19,6 +20,12 @@ export const UiSlice = createSlice({
         },
         inputCountryCode: (state, action) => {
             state.inputCountryCode = action.payload
+        },
+        isWinning: (state) => {
+            state.winning = true
+        },
+        isNotWinning: (state) => {
+            state.winning = false
         }
     }
 })
@@ -28,6 +35,8 @@ export const {
     guessedCountry,
     randomCountryCode,
     inputCountryCode,
+    isNotWinning,
+    isWinning
 } = UiSlice.actions
 
 export default UiSlice.reducer
