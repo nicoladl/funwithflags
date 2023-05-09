@@ -1,24 +1,39 @@
-import { createSlice } from '@reduxjs/toolkit'
+import {createSlice, PayloadAction} from '@reduxjs/toolkit'
+import {RootState} from "@/store/store";
 
+export interface UiState {
+    guessedCountryCode: string
+    inputCountryCode: string
+    randomCountry: {
+        code: string
+        name: string
+    }
+    winning: boolean
+}
+
+const initialState: UiState = {
+    guessedCountryCode: '',
+    inputCountryCode: '',
+    randomCountry: {
+        code: '',
+        name: '',
+    },
+    winning: false,
+}
 export const UiSlice = createSlice({
     name: 'ui',
-    initialState: {
-        guessedCountryCode: '',
-        inputCountryCode: '',
-        randomCountry: {
-            code: '',
-            name: '',
-        },
-        winning: false,
-    },
+    initialState,
     reducers: {
-        guessedCountry: (state, action) => {
+        guessedCountry: (state, action: PayloadAction<string>) => {
             state.guessedCountryCode = action.payload
         },
-        randomCountryCode: (state, action) => {
+        randomCountryCode: (state, action: PayloadAction<{
+            code: string
+            name: string
+        }>) => {
             state.randomCountry = action.payload
         },
-        inputCountryCode: (state, action) => {
+        inputCountryCode: (state, action: PayloadAction<string>) => {
             state.inputCountryCode = action.payload
         },
         isWinning: (state) => {

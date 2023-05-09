@@ -2,7 +2,7 @@
 
 import React, {useEffect, useState} from 'react';
 import {useLazyQuery} from '@apollo/client';
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {COUNTRIES} from "@/gql/queries";
 import {CountryHints} from "@/components/CountryHints";
 import {getRandomCountryCode} from "@/utils";

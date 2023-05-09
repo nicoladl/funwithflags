@@ -1,9 +1,10 @@
 import {GoogleMap, useJsApiLoader} from '@react-google-maps/api';
-import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {mapContainerStyle, mapOptions} from "@/mapConfig";
+import {useAppSelector} from "@/store/hooks";
+import {UiState} from "@/store/UiSlice/UiSlice";
 export const MapContainer = () => {
-    const guessedCountryName = useSelector(state => state.ui.randomCountry.name)
+    const guessedCountryName: string = useAppSelector((state: { ui: UiState }) => state.ui.randomCountry.name)
     const [isMapReady, seIsMapReady] = useState(false)
     const [center, setCenter] = useState({
         lat: 0,
