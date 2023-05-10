@@ -28,7 +28,12 @@ export const GameContainer = () => {
 
     return (
         <>
-            <CountrySelect/>
+            {(!winning && (
+                <p>Select the country name</p>
+            ))}
+            <Tile>
+                <CountrySelect/>
+            </Tile>
             {winning && (
                 <>
                     <Tile>
