@@ -9,14 +9,6 @@ import {UiState} from "@/store/UiSlice/UiSlice";
 
 type Name = { name: string }
 
-type InitialCountry = {
-    phone: string,
-    currency: string,
-    native: string,
-    languages: Array<Name>,
-    states: Array<Name>,
-}
-
 export const CountryDetails = () => {
     const countryCode: string = useAppSelector((state: { ui: UiState }) => state.ui.randomCountry.code)
     const [loadCountry, {loading, error, data}] = useLazyQuery(COUNTRY_DETAILS);
