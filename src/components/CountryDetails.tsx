@@ -14,7 +14,9 @@ export const CountryDetails = () => {
     const [loadCountry, {loading, error, data}] = useLazyQuery(COUNTRY_DETAILS);
 
     useEffect(() => {
-        loadCountry({variables: {code: countryCode}});
+        if (countryCode) {
+            loadCountry({variables: {code: countryCode}});
+        }
     }, [countryCode]);
 
     if (loading || error) {
