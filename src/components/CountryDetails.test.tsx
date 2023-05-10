@@ -42,7 +42,7 @@ const mocks = [
                     currency: "currency mock",
                     native: "native mock",
                     phone: "phone mock",
-                    languages: [{name: "language mock"}],
+                    languages: [{name: "language mock"}, {name: "second language mock"}],
                     states: [{name: "state mock"}, {name: "second state mock"}],
                 }
             }
@@ -84,7 +84,8 @@ describe('CountryDetails', () => {
         expect(await screen.findByText("Currency: currency mock")).toBeInTheDocument();
         expect(await screen.findByText("Native: native mock")).toBeInTheDocument();
         expect(await screen.findByText("Phone: phone mock")).toBeInTheDocument();
-        expect(await screen.findByText("language mock")).toBeInTheDocument();
+        expect(await screen.findByText("language mock,")).toBeInTheDocument();
+        expect(await screen.findByText("second language mock")).toBeInTheDocument();
         expect(await screen.findByText("state mock,")).toBeInTheDocument();
         expect(await screen.findByText("second state mock")).toBeInTheDocument();
     });
