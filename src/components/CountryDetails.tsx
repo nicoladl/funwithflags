@@ -18,7 +18,6 @@ type InitialCountry = {
 }
 
 export const CountryDetails = () => {
-    const [country, setCountry] = useState(initialCountry)
     const countryCode: string = useAppSelector((state: { ui: UiState }) => state.ui.randomCountry.code)
     const [loadCountry, {loading, error, data}] = useLazyQuery(COUNTRY_DETAILS);
 

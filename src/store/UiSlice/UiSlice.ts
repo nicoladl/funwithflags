@@ -10,7 +10,7 @@ export interface UiState {
     winning: boolean
 }
 
-const initialState: UiState = {
+export const initialState: UiState = {
     guessedCountryCode: '',
     inputCountryCode: '',
     randomCountry: {
