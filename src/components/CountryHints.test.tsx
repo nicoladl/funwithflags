@@ -10,16 +10,6 @@ const mocksLoading = [
             query: COUNTRY,
             variables: { code: 'IT' }
         },
-        result: {
-            data: {
-                country: {
-                    capital: "Rome",
-                    continent: {
-                        name: "Europe"
-                    },
-                }
-            }
-        }
     }
 ];
 
@@ -57,7 +47,7 @@ const mocks = [
 
 describe('CountryHits', () => {
     it("should render the loading state", async () => {
-        const { container } = render(
+        render(
             <MockedProvider mocks={mocksLoading} addTypename={false}>
                 <CountryHints code={'IT'}/>
             </MockedProvider>
