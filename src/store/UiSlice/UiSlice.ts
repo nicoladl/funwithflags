@@ -7,7 +7,7 @@ export interface UiState {
         code: string
         name: string
     }
-    winning: boolean
+    isWinning: boolean
 }
 
 export const initialState: UiState = {
@@ -17,7 +17,7 @@ export const initialState: UiState = {
         code: '',
         name: '',
     },
-    winning: false,
+    isWinning: false,
 }
 export const UiSlice = createSlice({
     name: 'ui',
@@ -36,10 +36,10 @@ export const UiSlice = createSlice({
             state.inputCountryCode = action.payload
         },
         isWinning: (state) => {
-            state.winning = true
+            state.isWinning = true
         },
         isNotWinning: (state) => {
-            state.winning = false
+            state.isWinning = false
         }
     }
 })

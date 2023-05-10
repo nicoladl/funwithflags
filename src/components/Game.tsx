@@ -10,7 +10,7 @@ import {useAppSelector} from "@/store/hooks";
 import {UiState} from "@/store/UiSlice/UiSlice";
 
 export const Game = () => {
-    const winning: boolean = useAppSelector((state: { ui: UiState }) => state.ui.winning)
+    const isWinning: boolean = useAppSelector((state: { ui: UiState }) => state.ui.isWinning)
 
     return (
         <>
@@ -31,7 +31,7 @@ export const Game = () => {
                 </Tile>
             </AlignCenter>
 
-            {winning && (<CountryDetails/>)}
+            {isWinning && (<CountryDetails/>)}
         </>
     )
 }

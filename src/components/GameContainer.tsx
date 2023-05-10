@@ -12,7 +12,7 @@ export const GameContainer = () => {
     const randomCountryCode: string = useAppSelector((state: { ui: UiState }) => state.ui.randomCountry.code)
     const guessedCountryCode: string = useAppSelector((state: { ui: UiState }) => state.ui.guessedCountryCode)
     const inputCountryCode: string = useAppSelector((state: { ui: UiState }) => state.ui.inputCountryCode)
-    const winning: boolean = useAppSelector((state: { ui: UiState }) => state.ui.winning)
+    const isGameWinning: boolean = useAppSelector((state: { ui: UiState }) => state.ui.isWinning)
 
     useEffect((): void => {
         if (randomCountryCode && guessedCountryCode) {
@@ -28,13 +28,13 @@ export const GameContainer = () => {
 
     return (
         <>
-            {(!winning && (
+            {(!isGameWinning && (
                 <p>Select the country name</p>
             ))}
             <Tile>
                 <CountrySelect/>
             </Tile>
-            {winning && (
+            {isGameWinning && (
                 <>
                     <Tile>
                         <Congrats/>
