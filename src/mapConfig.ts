@@ -1,4 +1,6 @@
-export const mapContainerStyle = {
+import {CSSProperties} from "react";
+
+export const mapContainerStyle: CSSProperties = {
     width: '100vw',
     height: '100vh',
     position: 'absolute',
