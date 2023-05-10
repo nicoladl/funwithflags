@@ -10,7 +10,7 @@ const italyMock: Country = {
 const countriesMock: Array<Country> = [italyMock]
 
 // todo: improve this test
-describe('AlignCenter', () => {
+describe('getRandomCountryCode', () => {
     it("should render the child component", async () => {
         const randomCountryCode: Country = getRandomCountryCode(countriesMock)
 
