@@ -3,6 +3,8 @@ import {useEffect, useState} from "react";
 import {mapContainerStyle, mapOptions} from "@/mapConfig";
 import {useAppSelector} from "@/store/hooks";
 import {UiState} from "@/store/UiSlice/UiSlice";
+
+// todo: test this component
 export const MapContainer = () => {
     const guessedCountryName: string = useAppSelector((state: { ui: UiState }) => state.ui.randomCountry.name)
     const [isMapReady, seIsMapReady] = useState(false)
