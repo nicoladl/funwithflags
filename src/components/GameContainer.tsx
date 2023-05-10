@@ -1,14 +1,13 @@
 import {CountrySelect} from "@/components/CountrySelect";
-import {useDispatch} from "react-redux";
 import {useEffect, useState} from "react";
 import {GuessCountryCode} from "@/components/GuessCountryCode";
 import {Congrats} from "@/components/Congrats";
 import {Tile} from "@/components/Tile";
 import {isNotWinning, isWinning, UiState} from "@/store/UiSlice/UiSlice";
-import {useAppSelector} from "@/store/hooks";
+import {useAppDispatch, useAppSelector} from "@/store/hooks";
 
 export const GameContainer = () => {
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const [countryGuessed, setCountryGuessed] = useState(false);
     const randomCountryCode: string = useAppSelector((state: { ui: UiState }) => state.ui.randomCountry.code)
     const guessedCountryCode: string = useAppSelector((state: { ui: UiState }) => state.ui.guessedCountryCode)

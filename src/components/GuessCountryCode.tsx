@@ -1,12 +1,12 @@
 'use client';
 
 import React, {FormEvent, useEffect, useState} from 'react';
-import {useDispatch} from "react-redux";
 import {inputCountryCode} from "@/store/UiSlice/UiSlice";
 import styles from './GuessCountryCode.module.scss'
+import {useAppDispatch} from "@/store/hooks";
 
 export const GuessCountryCode = () => {
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const [charOne, setCharOne] = useState('');
     const [charTwo, setCharTwo] = useState('');
 

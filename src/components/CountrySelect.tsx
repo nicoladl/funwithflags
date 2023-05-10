@@ -3,12 +3,12 @@
 import React, {useState} from 'react';
 import {useQuery} from '@apollo/client';
 import {Country} from "@/gql/graphql";
-import {useDispatch} from "react-redux";
 import {guessedCountry} from "@/store/UiSlice/UiSlice";
 import {COUNTRIES_SELECT_OPTIONS} from "@/gql/queries";
+import {useAppDispatch} from "@/store/hooks";
 
 export const CountrySelect = () => {
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const [country, setCountry] = useState('');
     const {data, loading, error} = useQuery(COUNTRIES_SELECT_OPTIONS);
 
