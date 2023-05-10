@@ -21,15 +21,13 @@ export const CountrySelect = () => {
         dispatch(guessedCountry(countryCode))
     }
 
-    return (
-        <>
-            <select value={country} onChange={event => onSelect(event.target.value)}>
-                {data.countries.map((country: Country) => (
-                    <option key={country.code} value={country.code}>
-                        {country.name}
-                    </option>
-                ))}
-            </select>
-        </>
+    return data && (
+        <select value={country} onChange={event => onSelect(event.target.value)}>
+            {data.countries.map((country: Country) => (
+                <option key={country.code} value={country.code}>
+                    {country.name}
+                </option>
+            ))}
+        </select>
     );
 }
