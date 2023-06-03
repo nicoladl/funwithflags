@@ -14,7 +14,7 @@ export const MapContainer = () => {
     })
 
     const {isLoaded, loadError} = useJsApiLoader({
-        googleMapsApiKey: 'AIzaSyAidISZEQMTxM_LKtwUoT1w0IDewL6k_Tg',
+        googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY || '', // todo: check why this is string | null
         language: 'en'
     })
 
